@@ -1,26 +1,61 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>Moosavi</h1>
+    <ul>
+      <li v-for="(name, index) in names" :key="index">{{ name }}</li>
+    </ul>
+  </div>
+  <!-- <Home :userInfo="userInfo" @childData="showData($event)"/> -->
+  <!-- <Home>
+    <template v-slot:ul>
+      <ul>
+      <li>Java</li>
+      <li>Java Script</li>
+    </ul>
+    </template>
+    <template v-slot:div>
+      <div>
+        <h1>mohamad</h1>
+      </div>
+    </template>
+  </Home> -->
+  <teleport to="#teleport-target">
+    <Home/>
+  </teleport>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
+
+<script>
+import Home from './components/HomeWeb.vue'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Home
+  },
+  data(){
+    return{
+      // name: 'hasan',
+      // lastname: 'moosavi',
+      // age: 37
+      userInfo: {
+        name: 'hasan',
+        lastname: 'moosavi',
+        age: 37
+      },
+      names: ['hasan', 'mohamad', 'asiye', 'selin']
+    };
+  },
+  methods: {
+    showData(event) {
+      console.log(event);
+    }
+  },
+  provide: {
+    user: 'hasan moosavi'
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
